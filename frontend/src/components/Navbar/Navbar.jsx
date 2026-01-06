@@ -10,7 +10,7 @@ export default function Navbar() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/">Dashboard</a>
+            <a href="/user/manage/dashboard">Dashboard</a>
           </li>
           <li>
             <a href="/">Contact</a>
