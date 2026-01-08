@@ -1,0 +1,26 @@
+.header-notify-bell{
+  margin-right: 10px;
+  position: relative;
+}
+.header-notify-bell button{
+  background-color: transparent;
+  color: var(--primary-text-color);
+  border: 0;
+  font-size: 25px;
+  cursor: pointer;
+  padding:5px 15px;
+  border-radius: 10px;
+
+}
+.header-notify-bell button:hover{
+  background-color: var(--secondary-bg-color);
+}
+.header-notify-bell samp{
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--symbol-color);
+  border-radius: 50%;
+}

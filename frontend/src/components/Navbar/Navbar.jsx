@@ -1,5 +1,8 @@
 import React from "react";
 import "./navbar.css";
+import NavProfile from "./NavProfile";
+import NotifyIcon from "../UI/NotifyIcon";
+
 export default function Navbar() {
   return (
     <div className="Navbar">
@@ -18,10 +21,14 @@ export default function Navbar() {
           <li>
             <a href="/">About</a>
           </li>
-          <li>
+          {/* <li>
             <a href="/">
               <button className="btn">Login</button>
             </a>
+          </li> */}
+          <li style={{display:"flex", alignItems:'center'}}>
+            <NotifyIcon />
+             < NavProfile />
           </li>
         </ul>
       </nav>
