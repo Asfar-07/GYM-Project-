@@ -1,0 +1,31 @@
+.trainer-graphs {
+  margin-top: 30px;
+  padding: 24px;
+  background: var(--secondary-bg-color);
+  border-radius: 18px;
+}
+
+.trainer-graphs h2 {
+  color: var(--primary-text-color);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.graphs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.graph-card {
+  background: linear-gradient(145deg, #0d172b, #101d36);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.graph-card h3 {
+  color: #cfd8dc;
+  font-size: 14px;
+  margin-bottom: 10px;
+}

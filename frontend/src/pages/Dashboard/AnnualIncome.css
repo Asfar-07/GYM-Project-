@@ -1,0 +1,118 @@
+.annual-income {
+  margin-top: 30px;
+  padding: 24px;
+  background: var(--secondary-bg-color);
+  border-radius: 20px;
+  color: #f0f4f8;
+}
+
+
+.income-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.income-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.growth-badge {
+  background: rgba(86, 178, 187, 0.15);
+  color: var(--symbol-color);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.total-income-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #223447;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.total-income-card .icon {
+  background: var(--symbol-color);
+  color: #000;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.total-income-card p {
+  font-size: 13px;
+  color: #bac7cc;
+}
+
+.total-income-card h3 {
+  font-size: 24px;
+}
+
+.income-graph {
+  background: linear-gradient(145deg, #0d162b, #0f1d36);
+  padding: 18px;
+  border-radius: 18px;
+  margin-bottom: 24px;
+}
+
+.income-graph h4 {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #bac7cc;
+}
+
+.income-breakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.income-card {
+  background: linear-gradient(145deg, #0d162b, #101d36);
+  padding: 18px;
+  border-radius: 16px;
+  position: relative;
+}
+
+.income-card p {
+  font-size: 13px;
+  color: #bac7cc;
+}
+
+.income-card h4 {
+  margin-top: 8px;
+  font-size: 20px;
+}
+
+.income-card span {
+  display: block;
+  height: 6px;
+  border-radius: 6px;
+  margin-top: 14px;
+}
+
+.income-card.teal span {
+  background: #56b2bb;
+  width: 80%;
+}
+
+.income-card.blue span {
+  background: #3b82f6;
+  width: 50%;
+}
+
+.income-card.purple span {
+  background: #a855f7;
+  width: 35%;
+}
