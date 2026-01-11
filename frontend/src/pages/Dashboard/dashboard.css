@@ -205,6 +205,12 @@
   background-color: transparent;
   font-weight: bold;
 }
+.studentuser-filters label select option{
+  /* width: 100px; */
+  color: var(--primary-text-color);
+  border: 0;
+  background-color: var(--primary-bg-color);
+}
 .studentuser-filters label svg{
   font-size: 14px;
   margin: 0 5px;

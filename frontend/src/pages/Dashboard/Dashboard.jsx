@@ -19,39 +19,41 @@ import AnnualIncome from "./AnnualIncome";
 import DashboardSettings from "./Dashboard-Settings";
 import "./dashboard.css";
 
+const students = [
+  {
+    name: "John Smith",
+    age: 28,
+    program: "Muscle Gain",
+    date: "2024-01-15",
+    status: "excellent",
+  },
+  {
+    name: "Sarah Johnson",
+    age: 32,
+    program: "Weight Loss",
+    date: "2024-02-20",
+    status: "good",
+  },
+  {
+    name: "Emily Davis",
+    age: 29,
+    program: "General Fitness",
+    date: "2024-03-25",
+    status: "average",
+  },
+  {
+    name: "David Brown",
+    age: 35,
+    program: "Weight Loss",
+    date: "2024-04-05",
+    status: "good",
+  },
+];
+
 export default function Dashboard() {
   const [showModal, setShowModal] = useState(false);
   const [activesection, setActiveSection] = useState("student");
-  const students = [
-    {
-      name: "John Smith",
-      age: 28,
-      program: "Muscle Gain",
-      date: "2024-01-15",
-      status: "excellent",
-    },
-    {
-      name: "Sarah Johnson",
-      age: 32,
-      program: "Weight Loss",
-      date: "2024-02-20",
-      status: "good",
-    },
-    {
-      name: "Emily Davis",
-      age: 29,
-      program: "General Fitness",
-      date: "2024-03-25",
-      status: "average",
-    },
-    {
-      name: "David Brown",
-      age: 35,
-      program: "Weight Loss",
-      date: "2024-04-05",
-      status: "good",
-    },
-  ];
+  const [filteredStudents, setFilteredStudents] = useState(students);
 
   function changeSection(e) {
     const selectactive = document.querySelectorAll(".dash-section-active");
@@ -62,6 +64,20 @@ export default function Dashboard() {
     e.target.className = "dash-section-active";
   }
 
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    const result = students.filter((student) =>
+      student.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredStudents(result);
+  };
+  const selectProgram= (e) => {
+    const value = e.target.value;
+    const result = students.filter((student) =>
+      student.program.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredStudents(result);
+  };
   return (
     <div className="dashboard">
       <aside className="dashboard-sidebar">
@@ -81,10 +97,11 @@ export default function Dashboard() {
               <FiUsers /> Students
             </li>
             <li
-             onClick={(e) => {
+              onClick={(e) => {
                 setActiveSection("programs");
                 changeSection(e);
-              }}>
+              }}
+            >
               {" "}
               <CgGym /> Programs
             </li>
@@ -92,17 +109,21 @@ export default function Dashboard() {
               {" "}
               <MdOutlineAnalytics /> Analytics
             </li> */}
-            <li  onClick={(e) => {
+            <li
+              onClick={(e) => {
                 setActiveSection("income");
                 changeSection(e);
-              }}>
+              }}
+            >
               {" "}
               <MdAttachMoney /> Income
             </li>
-            <li  onClick={(e) => {
+            <li
+              onClick={(e) => {
                 setActiveSection("settings");
                 changeSection(e);
-              }}>
+              }}
+            >
               {" "}
               <CiSettings /> Settings
             </li>
@@ -163,12 +184,16 @@ export default function Dashboard() {
               <div className="studentuser-filters">
                 <label htmlFor="userSearch">
                   <FaSearch />
-                  <input id="userSearch" placeholder="Search students..." />
+                  <input id="userSearch" placeholder="Search students..." onChange={handleSearch}/>
                 </label>
                 <label htmlFor="urPrograms">
                   <SiSimpleanalytics />
-                  <select id="urPrograms">
-                    <option>All Programs</option>
+                  <select id="urPrograms" onChange={selectProgram}>
+                    <option value="" selected>All Programs</option>
+                    <option value="Muscle Gain">Muscle Gain</option>
+                    <option value="Weight Loss">Weight Loss</option>
+                    <option value="Athletic Training">Athletic Training</option>
+                    <option value="General Fitness">General Fitness</option>
                   </select>
                 </label>
               </div>
@@ -188,7 +213,7 @@ export default function Dashboard() {
                 </thead>
 
                 <tbody>
-                  {students.map((s, index) => (
+                  {filteredStudents.map((s, index) => (
                     <tr key={index}>
                       <td>{s.name}</td>
                       <td>{s.age}</td>
