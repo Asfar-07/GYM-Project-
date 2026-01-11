@@ -11,13 +11,14 @@ import { FiUsers } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 import { CgGym } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
-import { IoAnalytics, IoEyeOutline } from "react-icons/io5";
+import { IoAnalytics} from "react-icons/io5";
 import { SiSimpleanalytics } from "react-icons/si";
-import { LuPencil } from "react-icons/lu";
+// import { LuPencil } from "react-icons/lu";
 import DashboardPrograms from "./Dashboard-Programs";
 import AnnualIncome from "./AnnualIncome";
 import DashboardSettings from "./Dashboard-Settings";
 import ThemeMode from "../../components/UI/ThemeMode";
+import StudentView from "./Student-View";
 import "./dashboard.css";
 
 const students = [
@@ -72,7 +73,7 @@ export default function Dashboard() {
     );
     setFilteredStudents(result);
   };
-  const selectProgram= (e) => {
+  const selectProgram = (e) => {
     const value = e.target.value;
     const result = students.filter((student) =>
       student.program.toLowerCase().includes(value.toLowerCase())
@@ -186,12 +187,18 @@ export default function Dashboard() {
               <div className="studentuser-filters">
                 <label htmlFor="userSearch">
                   <FaSearch />
-                  <input id="userSearch" placeholder="Search students..." onChange={handleSearch}/>
+                  <input
+                    id="userSearch"
+                    placeholder="Search students..."
+                    onChange={handleSearch}
+                  />
                 </label>
                 <label htmlFor="urPrograms">
                   <SiSimpleanalytics />
                   <select id="urPrograms" onChange={selectProgram}>
-                    <option value="" selected>All Programs</option>
+                    <option value="" selected>
+                      All Programs
+                    </option>
                     <option value="Muscle Gain">Muscle Gain</option>
                     <option value="Weight Loss">Weight Loss</option>
                     <option value="Athletic Training">Athletic Training</option>
@@ -224,13 +231,8 @@ export default function Dashboard() {
                       <td>
                         <span className={`badge ${s.status}`}>{s.status}</span>
                       </td>
-                      <td className="dash-action-btn">
-                        <button>
-                          <IoEyeOutline />
-                        </button>{" "}
-                        <button>
-                          <LuPencil />
-                        </button>
+                      <td>
+                        <StudentView students={s} />
                       </td>
                     </tr>
                   ))}

@@ -8,6 +8,9 @@ export const dashboardSlice = createSlice({
     }
   },
   reducers: {
+    setStudent:(state,action)=>{
+
+    }
   }
 })
 
