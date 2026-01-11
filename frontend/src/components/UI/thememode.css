@@ -1,0 +1,17 @@
+
+.theme-mode{
+    margin: 0 10px;
+}
+.theme-mode button{
+  background-color: transparent;
+  color: var(--primary-text-color);
+  border: 0;
+  font-size: 25px;
+  cursor: pointer;
+  padding:5px 15px;
+  border-radius: 10px;
+
+}
+.theme-mode button:hover{
+  background-color: var(--secondary-bg-color);
+}

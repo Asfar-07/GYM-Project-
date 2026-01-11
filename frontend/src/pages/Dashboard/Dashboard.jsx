@@ -17,6 +17,7 @@ import { LuPencil } from "react-icons/lu";
 import DashboardPrograms from "./Dashboard-Programs";
 import AnnualIncome from "./AnnualIncome";
 import DashboardSettings from "./Dashboard-Settings";
+import ThemeMode from "../../components/UI/ThemeMode";
 import "./dashboard.css";
 
 const students = [
@@ -143,6 +144,7 @@ export default function Dashboard() {
           <div className="dashboard-ur-profile">
             <NotifyIcon />
             <NavProfile />
+            <ThemeMode />
           </div>
         </header>
 

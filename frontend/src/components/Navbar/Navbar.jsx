@@ -2,6 +2,7 @@ import React from "react";
 import "./navbar.css";
 import NavProfile from "./NavProfile";
 import NotifyIcon from "../UI/NotifyIcon";
+import ThemeMode from "../UI/ThemeMode";
 
 export default function Navbar() {
   return (
@@ -29,6 +30,7 @@ export default function Navbar() {
           <li style={{display:"flex", alignItems:'center'}}>
             <NotifyIcon />
              < NavProfile />
+            <ThemeMode />
           </li>
         </ul>
       </nav>
