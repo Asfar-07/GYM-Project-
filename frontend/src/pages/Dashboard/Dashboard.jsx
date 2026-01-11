@@ -11,7 +11,7 @@ import { FiUsers } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 import { CgGym } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
-import { IoAnalytics} from "react-icons/io5";
+import { IoAnalytics } from "react-icons/io5";
 import { SiSimpleanalytics } from "react-icons/si";
 // import { LuPencil } from "react-icons/lu";
 import DashboardPrograms from "./Dashboard-Programs";
@@ -56,6 +56,13 @@ export default function Dashboard() {
   const [showModal, setShowModal] = useState(false);
   const [activesection, setActiveSection] = useState("student");
   const [filteredStudents, setFilteredStudents] = useState(students);
+  const [newstudentdata, setNewStudentData] = useState({
+    name: "",
+    age: 0,
+    program: "",
+    date: "",
+    status: "",
+  });
 
   function changeSection(e) {
     const selectactive = document.querySelectorAll(".dash-section-active");
@@ -80,6 +87,10 @@ export default function Dashboard() {
     );
     setFilteredStudents(result);
   };
+  function addNewStudent() {
+    console.log(newstudentdata)
+     setShowModal(false)
+  }
   return (
     <div className="dashboard">
       <aside className="dashboard-sidebar">
@@ -258,13 +269,25 @@ export default function Dashboard() {
 
             <div className="modal-body">
               <label>Student Name</label>
-              <input placeholder="Enter student name" />
+              <input
+                placeholder="Enter student name"
+                value={newstudentdata.name}
+                onChange={(e) => {
+                  setNewStudentData({...newstudentdata,name:e.target.value});
+                }}
+              />
 
               <label>Age</label>
-              <input type="number" placeholder="Enter age" />
+              <input type="number" value={newstudentdata.age} placeholder="Enter age" 
+              onChange={(e) => {
+                  setNewStudentData({...newstudentdata,age:e.target.value});
+                }}/>
 
               <label>Fitness Goal</label>
-              <select>
+              <select value={newstudentdata.program}
+              onChange={(e) => {
+                  setNewStudentData({...newstudentdata,program:e.target.value});
+                }}>
                 <option>Select fitness goal</option>
                 <option>Weight Loss</option>
                 <option>Muscle Gain</option>
@@ -280,7 +303,10 @@ export default function Dashboard() {
               </select>
 
               <label>Start Date</label>
-              <input type="date" />
+              <input type="date" value={newstudentdata.date}
+              onChange={(e) => {
+                  setNewStudentData({...newstudentdata,date:e.target.value});
+                }}/>
             </div>
 
             <div className="modal-footer">
@@ -290,7 +316,9 @@ export default function Dashboard() {
               >
                 Cancel
               </button>
-              <button className="submit-btn">Add Student</button>
+              <button className="submit-btn" onClick={addNewStudent}>
+                Add Student
+              </button>
             </div>
           </div>
         </div>
