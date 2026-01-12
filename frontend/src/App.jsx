@@ -11,7 +11,7 @@ function App() {
   const theme = useSelector((state) => state.theme.mode);
   useEffect(()=>{
     dispatch(setThemeFromLocal())
-  },[])
+  },[dispatch])
     useEffect(() => {
     const root = document.documentElement;
 

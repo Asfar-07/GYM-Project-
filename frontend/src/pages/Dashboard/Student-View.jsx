@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { LuPencil } from "react-icons/lu";
 import { IoEyeOutline } from "react-icons/io5";
+import { MdDeleteOutline } from "react-icons/md";
 import "./student-view.css";
 
-export default function StudentView({ students }) {
+export default function StudentView({
+  students,
+  index,
+  setStudents,
+  setFilteredStudents,
+}) {
   const [showStudentSidebar, setShowStudentSidebar] = useState(false);
   return (
     <div>
@@ -21,6 +27,15 @@ export default function StudentView({ students }) {
           }}
         >
           <LuPencil />
+        </button>
+        <button
+          style={{ color: "#ff2525" }}
+          onClick={() => {
+            setStudents((s) => s.filter((_, i) => i !== index));
+            setFilteredStudents((s) => s.filter((_, i) => i !== index));
+          }}
+        >
+          <MdDeleteOutline />
         </button>
       </div>
       {showStudentSidebar && (
@@ -62,7 +77,17 @@ export default function StudentView({ students }) {
                 <span>Pending (This Month)</span>
                 <strong>{students.name}</strong>
               </div>
-
+              <button
+                className="edit-student-btn"
+                style={{ backgroundColor: "#ff2525" }}
+                onClick={() => {
+                  setStudents((s) => s.filter((_, i) => i !== index));
+                  setFilteredStudents((s) => s.filter((_, i) => i !== index));
+                  setShowStudentSidebar(false);
+                }}
+              >
+                <MdDeleteOutline /> Student
+              </button>
               <button className="edit-student-btn">
                 <LuPencil /> Edit Student
               </button>

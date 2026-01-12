@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavProfile from "../../components/Navbar/NavProfile";
 import NotifyIcon from "../../components/UI/NotifyIcon";
 import { CiSettings } from "react-icons/ci";
@@ -19,42 +19,44 @@ import AnnualIncome from "./AnnualIncome";
 import DashboardSettings from "./Dashboard-Settings";
 import ThemeMode from "../../components/UI/ThemeMode";
 import StudentView from "./Student-View";
+import { useSelector, useDispatch } from "react-redux";
+import { setStudent } from "../../features/dashboard/dashboardSlice";
 import "./dashboard.css";
 
-const students = [
-  {
-    name: "John Smith",
-    age: 28,
-    program: "Muscle Gain",
-    date: "2024-01-15",
-    status: "excellent",
-  },
-  {
-    name: "Sarah Johnson",
-    age: 32,
-    program: "Weight Loss",
-    date: "2024-02-20",
-    status: "good",
-  },
-  {
-    name: "Emily Davis",
-    age: 29,
-    program: "General Fitness",
-    date: "2024-03-25",
-    status: "average",
-  },
-  {
-    name: "David Brown",
-    age: 35,
-    program: "Weight Loss",
-    date: "2024-04-05",
-    status: "good",
-  },
-];
-
 export default function Dashboard() {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [activesection, setActiveSection] = useState("student");
+  const [students, setStudents] = useState([
+    {
+      name: "John Smith",
+      age: 28,
+      program: "Muscle Gain",
+      date: "2024-01-15",
+      status: "excellent",
+    },
+    {
+      name: "Sarah Johnson",
+      age: 32,
+      program: "Weight Loss",
+      date: "2024-02-20",
+      status: "good",
+    },
+    {
+      name: "Emily Davis",
+      age: 29,
+      program: "General Fitness",
+      date: "2024-03-25",
+      status: "average",
+    },
+    {
+      name: "David Brown",
+      age: 35,
+      program: "Weight Loss",
+      date: "2024-04-05",
+      status: "good",
+    },
+  ]);
   const [filteredStudents, setFilteredStudents] = useState(students);
   const [newstudentdata, setNewStudentData] = useState({
     name: "",
@@ -63,6 +65,10 @@ export default function Dashboard() {
     date: "",
     status: "",
   });
+
+  useEffect(() => {
+    dispatch(setStudent(students));
+  }, [students, dispatch]);
 
   function changeSection(e) {
     const selectactive = document.querySelectorAll(".dash-section-active");
@@ -88,8 +94,17 @@ export default function Dashboard() {
     setFilteredStudents(result);
   };
   function addNewStudent() {
-    console.log(newstudentdata)
-     setShowModal(false)
+    console.log(newstudentdata);
+    setShowModal(false);
+    setStudents([...students, newstudentdata]);
+    setFilteredStudents([...filteredStudents, newstudentdata]);
+    setNewStudentData({
+      name: "",
+      age: 0,
+      program: "",
+      date: "",
+      status: "",
+    });
   }
   return (
     <div className="dashboard">
@@ -243,7 +258,12 @@ export default function Dashboard() {
                         <span className={`badge ${s.status}`}>{s.status}</span>
                       </td>
                       <td>
-                        <StudentView students={s} />
+                        <StudentView
+                          students={s}
+                          index={index}
+                          setStudents={setStudents}
+                          setFilteredStudents={setFilteredStudents}
+                        />
                       </td>
                     </tr>
                   ))}
@@ -273,21 +293,33 @@ export default function Dashboard() {
                 placeholder="Enter student name"
                 value={newstudentdata.name}
                 onChange={(e) => {
-                  setNewStudentData({...newstudentdata,name:e.target.value});
+                  setNewStudentData({
+                    ...newstudentdata,
+                    name: e.target.value,
+                  });
                 }}
               />
 
               <label>Age</label>
-              <input type="number" value={newstudentdata.age} placeholder="Enter age" 
-              onChange={(e) => {
-                  setNewStudentData({...newstudentdata,age:e.target.value});
-                }}/>
+              <input
+                type="number"
+                value={newstudentdata.age}
+                placeholder="Enter age"
+                onChange={(e) => {
+                  setNewStudentData({ ...newstudentdata, age: e.target.value });
+                }}
+              />
 
               <label>Fitness Goal</label>
-              <select value={newstudentdata.program}
-              onChange={(e) => {
-                  setNewStudentData({...newstudentdata,program:e.target.value});
-                }}>
+              <select
+                value={newstudentdata.program}
+                onChange={(e) => {
+                  setNewStudentData({
+                    ...newstudentdata,
+                    program: e.target.value,
+                  });
+                }}
+              >
                 <option>Select fitness goal</option>
                 <option>Weight Loss</option>
                 <option>Muscle Gain</option>
@@ -303,10 +335,16 @@ export default function Dashboard() {
               </select>
 
               <label>Start Date</label>
-              <input type="date" value={newstudentdata.date}
-              onChange={(e) => {
-                  setNewStudentData({...newstudentdata,date:e.target.value});
-                }}/>
+              <input
+                type="date"
+                value={newstudentdata.date}
+                onChange={(e) => {
+                  setNewStudentData({
+                    ...newstudentdata,
+                    date: e.target.value,
+                  });
+                }}
+              />
             </div>
 
             <div className="modal-footer">
